@@ -1,0 +1,37 @@
+<div class="container text-center bg-light card">
+<form action="/message" method="post">
+    <h1 style="text-center text-primary" >Contact Us</h1>
+    <div class="form-group mb-3">
+        <div class="row">
+            <div class="col-1"><i class="bi bi-person"></i></div>
+            <div class="col-11"><input class="form-control" type="text" placeholder="First Name" name="firstName" required="true"></div>
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <div class="row">
+            <div class="col-1"><i class="bi bi-person"></i></div>
+            <div class="col-11"><input class="form-control" type="text" placeholder="Last Name" name="lastName"  required="true"></div>
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <div class="row">
+            <div class="col-1"><i class="bi bi-envelope"></i></div>
+            <div class="col-11"><input  class="form-control" type="email" placeholder="Email" name="email"  required="true"></div>
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <div class="row">
+            <div class="col-1"><i class="bi bi-telephone"></i></div>
+            <div class="col-11"><input class="form-control" type="mobile" placeholder="Phone" name="phone" required="true" maxlength="11"></div>
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <div class="row">
+            <div class="col-1"><i class="bi bi-vector-pen"></i></div>
+            <div class="col-11"><input class="form-control" type="text" placeholder="Message" name="message" required="true"></div>
+        </div>
+    </div>
+    <br>
+    <input class="btn btn-primary text-center" type="submit" value="SEND">
+</form>
+</div>
