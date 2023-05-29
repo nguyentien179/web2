@@ -7,11 +7,14 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var hbs = require('hbs');
 var app = express();
 
 var mongoose = require('mongoose');
 var local = "mongodb://127.0.0.1:27017/gch1101"
 var cloud = "mongodb+srv://nguyentien100333:Khongduocnoi1@cluster0.sn4ymgq.mongodb.net/"
+
+hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 mongoose.connect(local)
 .then(() => console.log('Connect success'))
@@ -44,5 +47,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
+app.listen(3001)
 module.exports = app;

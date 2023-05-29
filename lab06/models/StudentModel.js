@@ -6,5 +6,5 @@ var StudentSchema = new mongoose.Schema({
     gpa: Number,
 })
 
-var StudentModel = mongoose.model('student',StudentSchema, 'student');
+var StudentModel = mongoose.model('student',StudentSchema,'student');
 module.exports = StudentModel;

@@ -4,5 +4,5 @@ var SubjectSchema = new mongoose.Schema({
     code: Number,
 })
 
-var SubjectModel = mongoose.model('subject',StudentSchema, 'subject');
+var SubjectModel = mongoose.model('subject',SubjectSchema, 'subject');
 module.exports = SubjectModel;
