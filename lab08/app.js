@@ -8,35 +8,24 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
-var bodyParser =  require("body-parser");
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+var url = "mongodb+srv://nguyentien100333:Khongduocnoi1@gch1101.yke1btz.mongodb.net/GCH1101";
 
-
-//1. khai báo thư viện mongoose
-var mongoose = require("mongoose");
-
-//2. khai báo uri của local & cloud DB
-//uri1 : local DB connection string
-var uri1 = "mongodb://localhost:27017";
-//uri2 : cloud DB connection string
-var uri2 = "mongodb+srv://longndt:xxxxxx@cluster0.idtjj4e.mongodb.net/";
-
-//3. check kết nối DB
-mongoose.connect(uri1)
-.then(() => console.log ("Connect to DB succeed !"))
-.catch((err) => console.log (err));
-
-
-
+mongoose.connect(url)
+.then(() => { console.log ('connect to DB succeed !')})
+.catch((err) => { console.error (err)});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.urlencoded({ extended: false}));
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
@@ -55,7 +44,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-app.listen(3003);
 
 module.exports = app;

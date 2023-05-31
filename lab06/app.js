@@ -7,18 +7,27 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var hbs = require('hbs');
 var app = express();
 
-var mongoose = require('mongoose');
-var local = "mongodb://127.0.0.1:27017/gch1101"
-var cloud = "mongodb+srv://nguyentien100333:Khongduocnoi1@cluster0.sn4ymgq.mongodb.net/"
+//khai báo và đăng ký thư viện dateformat cho hbs
+var hbs = require('hbs');
+hbs.registerHelper('dateFormat', require('handlebars-dateformat')); 
 
-hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
+//1. khai báo thư viện mongoose để connect đến database server
+var mongoose = require ('mongoose');
 
-mongoose.connect(local)
-.then(() => console.log('Connect success'))
-.catch((err) => {console.log(err)});
+//2. khai báo đường dẫn URI đến database server (local hoặc cloud)
+//Note: cần khai báo rõ tên của database cần sử dụng trong URI
+var local = "mongodb://localhost:27017/gch1101";
+var cloud = "mongodb+srv://longndt:xxxxxx@cluster0.gobiulx.mongodb.net/gch1101";
+
+//3. connect đến database server
+mongoose.connect(cloud)
+.then(() => { console.log ("Connect to DB succeed !")})
+//.catch((err) => { console.error(err)});
+.catch ((err) => { console.error("Connect to DB failed !") });
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -47,5 +56,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-app.listen(3001)
+
+//change port
+app.listen(5000);
+
 module.exports = app;
